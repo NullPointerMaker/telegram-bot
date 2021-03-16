@@ -17,7 +17,7 @@ public class MessageShell {
     static final MessageShell NULL = new MessageShell(null);
     private final Integer messageID;
     @SuppressWarnings("FieldCanBeLocal")
-    private final boolean isNull, hasText, hasCaption, hasURL;
+    private final boolean isNull, hasText, hasCaption, hasUrl;
     private final Integer forwardFromMessageID;
     private final Integer editDate;
     private final Integer date;
@@ -42,7 +42,7 @@ public class MessageShell {
         hasCaption = ct != null && ct.length() > 0;
         text = hasText ? t : hasCaption ? ct : null;
         entities = hasText ? message.entities() : hasCaption ? message.captionEntities() : null;
-        hasURL = hasURL(entities);
+        hasUrl = hasUrl(entities);
         forwardSenderName = isNull ? null : message.forwardSenderName();
         forwardSignature = isNull ? null : message.forwardSignature();
         chat = isNull ? ChatShell.NULL : new ChatShell(message.chat());
@@ -85,13 +85,13 @@ public class MessageShell {
         return chatPublicLink + "/" + messageID;
     }
 
-    //	public boolean textHasURL() {
-//		return entities!=null&&entitiesHasURL(entities);
+    //	public boolean textHasUrl() {
+//		return entities!=null&&entitiesHasUrl(entities);
 //	}
-//	public boolean captionHasURL() {
-//		return captionEntities!=null&&entitiesHasURL(captionEntities());
+//	public boolean captionHasUrl() {
+//		return captionEntities!=null&&entitiesHasUrl(captionEntities());
 //	}
-    private static boolean hasURL(MessageEntity[] entities) {
+    private static boolean hasUrl(MessageEntity[] entities) {
         if (entities == null) {
             return false;
         }
@@ -108,7 +108,7 @@ public class MessageShell {
      * @param entities 元素
      * @return 数组0是url用%s占位的完整消息，其余的是消息中包含的url，注意可能包含markdown转义字符`\`
      */
-    private static String[] toMarkdownAndURLs(String text, MessageEntity[] entities) {
+    private static String[] toMarkdownAndUrls(String text, MessageEntity[] entities) {
         LinkedList<String> list = new LinkedList<>();
         StringBuffer sb = new StringBuffer(text);
         int offsetFromOldToNew = 0;
@@ -329,8 +329,8 @@ public class MessageShell {
     }
 
 
-    public boolean hasURL() {
-        return hasURL;
+    public boolean hasUrl() {
+        return hasUrl;
     }
 
     public boolean isNull() {
@@ -349,8 +349,8 @@ public class MessageShell {
         return text;
     }
 
-    public String[] toMarkdownAndURLs() {
-        return hasURL ? toMarkdownAndURLs(text, entities) : null;
+    public String[] toMarkdownAndUrls() {
+        return hasUrl ? toMarkdownAndUrls(text, entities) : null;
     }
     public MessageShell getPinnedMessage(){
         return pinnedMessage;
