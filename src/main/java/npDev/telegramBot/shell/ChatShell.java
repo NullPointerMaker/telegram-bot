@@ -37,7 +37,7 @@ public class ChatShell {
         return isGroup() || isSupergroup();
     }
 
-    public ChatMemberShell doGetChatMember(Instance bot, int userId) {
+    public ChatMemberShell doGetChatMember(Instance bot, long userId) {
         return ChatMemberShell.doGetChatMember(bot, id, userId);
     }
 
