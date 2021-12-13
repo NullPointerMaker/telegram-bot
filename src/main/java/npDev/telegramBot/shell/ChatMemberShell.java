@@ -27,7 +27,7 @@ public class ChatMemberShell {
         user = isNull ? UserShell.NULL : new UserShell(chatMember.user());
     }
 
-    static ChatMemberShell doGetChatMember(Instance bot, long chatID, int userID) {
+    static ChatMemberShell doGetChatMember(Instance bot, long chatID, long userID) {
         GetChatMember request = new GetChatMember(chatID, userID);
         GetChatMemberResponse response = bot.execute(request);
         if (response.isOk()) {

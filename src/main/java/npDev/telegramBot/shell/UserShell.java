@@ -6,7 +6,7 @@ import npDev.telegramBot.Instance;
 public class UserShell {
     static final UserShell NULL = new UserShell(null);
     private final boolean isNull;
-    private final Integer id;
+    private final Long id;
     private final String firstName;
     private final String username;
     private final Boolean isBot;
@@ -19,11 +19,11 @@ public class UserShell {
         isBot = isNull ? null : user.isBot();
     }
 
-    static String toMarkdown(String userName, int userID) {
+    static String toMarkdown(String userName, long userID) {
         return "[" + userName + "](tg://user?id=" + userID + ")";
     }
 
-    public static String toIDMarkdown(int userID) {
+    public static String toIDMarkdown(long userID) {
         return toMarkdown(String.valueOf(userID), userID);
     }
 //    public String toIDMarkdown() {
@@ -61,7 +61,7 @@ public class UserShell {
         return isNull ? null : toMarkdown(firstName, id);
     }
 
-    public Integer getID() {
+    public Long getID() {
         return id;
     }
 
